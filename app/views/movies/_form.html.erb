@@ -1,4 +1,5 @@
-<div class="input-group">
+<div class="col-lg-6 col-md-8 col-xs-12" style="margin-bottom: 10%">
+
   <%= bootstrap_form_for(movie) do |f| %>
     <% if movie.errors.any? %>
       <div id="error_explanation">
@@ -12,36 +13,25 @@
       </div>
     <% end %>
 
+      <% unless movie.image_file_name.nil?  %>
+          <%= image_tag(movie.image(:medium), class: "img-fluid") %>
+          <br>
+          <%= f.label "Change Image" %>
+          <%= f.file_field :image, hide_label: true %>
+        <% else %>
+          <%= f.file_field :image %>
+      <%end %>
+
+
+
 
       <%= f.text_field :title %>
-
-
-      <%= f.text_area :description %>
-
-
-
+      <%= f.text_area :description  %>
       <%= f.text_field :movie_length %>
-
-
       <%= f.text_field :rating %>
-
-
-
       <%= f.text_field :year %>
-
-
       <%= f.text_field :genre %>
-
-
-
-        <%= f.file_field :image %>
-
-
-
-
       <%= f.submit %>
-
-
   <% end %>
-
 </div>
+
