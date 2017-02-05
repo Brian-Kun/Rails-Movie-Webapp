@@ -1,0 +1,47 @@
+<div class="input-group">
+  <%= bootstrap_form_for(movie) do |f| %>
+    <% if movie.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+        <ul>
+        <% movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+      <%= f.text_field :title %>
+
+
+      <%= f.text_area :description %>
+
+
+
+      <%= f.text_field :movie_length %>
+
+
+      <%= f.text_field :rating %>
+
+
+
+      <%= f.text_field :year %>
+
+
+      <%= f.text_field :genre %>
+
+
+
+        <%= f.file_field :image %>
+
+
+
+
+      <%= f.submit %>
+
+
+  <% end %>
+
+</div>
