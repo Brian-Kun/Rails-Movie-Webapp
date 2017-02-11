@@ -1,0 +1,20 @@
+<div class="col-md-6">
+  <%= bootstrap_form_for(review) do |f| %>
+    <% if review.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+        <ul>
+        <% review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+
+      <%= f.number_field :rating %>
+      <%= f.text_area :comment %>
+      <%= f.submit %>
+  <% end %>
+</div>

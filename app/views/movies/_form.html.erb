@@ -4,22 +4,22 @@
     <% if movie.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
-
         <ul>
         <% movie.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
         </ul>
+
       </div>
     <% end %>
 
-      <% unless movie.image_file_name.nil?  %>
+      <% if movie.image_file_name.nil?  %>
+          <%= f.file_field :image %>
+        <% else %>
           <%= image_tag(movie.image(:medium), class: "img-fluid") %>
           <br>
           <%= f.label "Change Image" %>
           <%= f.file_field :image, hide_label: true %>
-        <% else %>
-          <%= f.file_field :image %>
       <%end %>
 
 

@@ -1,33 +1,50 @@
-<%= image_tag @movie.image(:medium) %>
-<p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
-</p>
+<div class="panel panel-default">
+  <div class="panel-body">
 
-<p>
-  <strong>Description:</strong>
-  <%= @movie.description %>
-</p>
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag @movie.image(:medium), class: "img-fluid"%>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+            <tr>
+              <td>Title:</td>
+              <td><%= @movie.title%></td>
+            </tr>
 
-<p>
-  <strong>Movie length:</strong>
-  <%= @movie.movie_length %>
-</p>
+            <tr>
+              <td>Description:</td>
+              <td><%= @movie.description %></td>
+            </tr>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @movie.rating %>
-</p>
+            <tr>
+              <td>Length:</td>
+              <td><%= @movie.movie_length %></td>
+            </tr>
 
-<p>
-  <strong>Year:</strong>
-  <%= @movie.year %>
-</p>
+            <tr>
+              <td>Rating:</td>
+              <td><%= @movie.rating %></td>
+            </tr>
 
-<p>
-  <strong>Genre:</strong>
-  <%= @movie.genre %>
-</p>
+            <tr>
+              <td>Year:</td>
+              <td><%= @movie.year %></td>
+            </tr>
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
+            <tr>
+              <td>Genre:</td>
+              <td><%= @movie.genre %></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_movie_path(@movie), class: "btn btn-warning" %>
+<%= link_to 'Back', movies_path, class: "btn btn-default" %>
+
