@@ -1,6 +1,5 @@
 <div class="panel panel-default">
   <div class="panel-body">
-
     <div class="row">
       <div class="col-md-4">
         <%= image_tag @movie.image(:medium), class: "img-fluid"%>
@@ -40,11 +39,46 @@
           </table>
         </div>
       </div>
-    </div>
 
+      <div class="col-md-7 col-md-offset-1">
+        <h2><%= "#{@movie.title} Reviews" %></h2>
+        <% if @reviews.blank? %>
+            <h3>There are no reviews for this movie yet.</h3>
+            <%= link_to "Write a Review", new_movie_review_path(@movie), class: "btn btn-default"%>
+        <% else %>
+            <% @reviews.each do |r| %>
+                <Strong><%= r.title %></Strong>
+                <div class="star-rating" data-score= <%= r.rating %> ></div>
+                <p><%= r.comment %></p>
+                <% unless current_user.nil? %>
+                  <% if current_user.id == r.user_id  %>
+                        <div style="text-align: right">
+                          <%= link_to "Edit", edit_movie_review_path(@movie,r), class: "btn btn-warning" %>
+                          <%= link_to "Delete", review_path(r), class: "btn btn-danger", :method => :delete, data: { confirm: 'Are you certain you want to delete this?' } %>
+                        </div>
+                  <% end %>
+                <%end %>
+                <hr>
+            <% end %>
+        <% end %>
+
+      </div>
+
+    </div>
+      <%= link_to "Write a Review", new_movie_review_path(@movie), class: "btn btn-lg btn-success"%>
   </div>
 </div>
 
 <%= link_to 'Edit', edit_movie_path(@movie), class: "btn btn-warning" %>
 <%= link_to 'Back', movies_path, class: "btn btn-default" %>
+
+<script>
+  $('.star-rating').raty({
+    path: '/assets',
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    }
+  });
+</script>
 
