@@ -16,7 +16,10 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-            <li style="margin-top: 3px; margin-right: 3px"><%= link_to "Add Movie", new_movie_path, class: "btn btn-default", style: "padding: 10px" %></li>
+            <% if current_user.email == "admin@email.com" %>
+                <li style="margin-top: 3px; margin-right: 3px"><%= link_to "Add Movie", new_movie_path, class: "btn btn-default", style: "padding: 10px" %></li>
+            <% end %>
+
             <li style="margin-top: 3px" ><%= link_to "Sign Out", destroy_user_session_path, :method => :delete,  class: "btn btn-default", style: "padding: 10px" %></li>
         <% else %>
             <li style="margin-top: 3px"><%= link_to "Sing In", new_user_session_path, class: "btn btn-default", style: "padding: 10px" %></li>
